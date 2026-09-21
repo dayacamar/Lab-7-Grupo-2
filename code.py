@@ -127,7 +127,7 @@ df_usuario["user_id"].duplicated().sum()
 
 
 # Punto 2
-# Diagrama de dispersión para edad y proporción de ejercicios de perdida de grasa
+# Diagrama de dispersión para edad y cantidad de ejercicios de perdida de grasa
 
 relacion_1 = df_usuario[["age", "n_goal_fat_loss"]]
 relacion_1.plot(kind="scatter", x="age", y="n_goal_fat_loss", xlabel="Edad", ylabel="Cantidad de ejercicios para la perdida de grasa", title="Relación edad - cantidad de ejercicios para la perdida de grasa")
@@ -146,7 +146,7 @@ plt.show()
 corr2 = df_usuario["mean_rating"].corr(df_usuario["n_body_cardio"])
 print(f"Coeficiente de correlación 2: {corr2}")
 
-# Diagrama de dispersión para valoración promedio y proporción de ejercicios de condición física general
+# Diagrama de dispersión para valoración promedio y cantidad de ejercicios de condición física general
 relacion_3 = df_usuario[["mean_rating", "n_goal_general_fitness"]]
 relacion_3.plot(kind="scatter", x="mean_rating", y="n_goal_general_fitness", xlabel="Valoración promedio (0.0 - 5.0)", ylabel="Cantidad de ejercicios para acondicionamiento físico", title="Relación valoración promedio \n - Cantidad de ejercicios para acondicionamiento físico")
 plt.show()
