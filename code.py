@@ -104,22 +104,23 @@ df_usuario["n_goal_endurance"]
 / df_usuario["n_records"]
 )
 
+# Proporción de cantidad de registros en fat loss
 df_usuario["share_goal_fat_loss"] = (
 df_usuario["n_goal_fat_loss"]
 / df_usuario["n_records"]
 )
 
+# Proporción de cantidad de registros en mobility
 df_usuario["share_goal_mobility"] = (
 df_usuario["n_goal_mobility"]
 / df_usuario["n_records"]
 )
 
+# Proporción de cantidad de registros en muscle gain
 df_usuario["share_goal_muscle_gain"] = (
 df_usuario["n_goal_muscle_gain"]
 / df_usuario["n_records"]
 )
-
-
 
 df_usuario["user_id"].nunique()
 
@@ -127,42 +128,9 @@ df_usuario.shape[0]
 
 df_usuario["user_id"].duplicated().sum()
 
-##pregunta 4
-edad_entrenamientos_resistencia = df_usuario["age"].corr(df_usuario["n_goal_endurance"])
-valoracion_cantidad_musculos = df_usuario["mean_rating"].corr(df_usuario["n_body_cardio"])
-valoracion_perida_grasa = df_usuario["mean_rating"].corr(df_usuario["n_goal_general_fitness"])
-
-df_fitness_goal = (df_usuario["n_goal_general_fitness"] == 0.0) | (df_usuario["n_goal_general_fitness"] == 0.0)
-#print(df_fitness_goal)
-
-#print("print")
-#print(edad_entrenamientos_resistencia)
-#print(valoracion_cantidad_musculos)
-#print(valoracion_perida_grasa)
-
-## pregunta 3
-df_usuario["mean_rating"].plot(kind="box")
-plt.show()
-
-## mean rating
-mas_bajo = df_usuario["mean_rating"].min()
-print("Promedio más bajo:", mas_bajo)
-mas_alto = df_usuario["mean_rating"].max()
-print("Promedio más alto:", mas_alto)
-df_mean_bajo = df_usuario[df_usuario['mean_rating'] == mas_bajo]
-df_solo_rating = df_mean_bajo[['user_id', 'mean_rating']]
-print(df_solo_rating)
-
-## n records
-mayores_records = df_usuario.sort_values(by="n_records", ascending=False).head()
-df_mayores_records = mayores_records[["user_id", "n_records", "mean_rating"]]
-print(df_mayores_records)
-
-print("si")
 
 # Punto 2
 # Diagrama de dispersión para edad y cantidad de ejercicios de perdida de grasa
-
 relacion_1 = df_usuario[["age", "n_goal_fat_loss"]]
 relacion_1.plot(kind="scatter", x="age", y="n_goal_fat_loss", xlabel="Edad", ylabel="Cantidad de ejercicios para la perdida de grasa", title="Relación edad - cantidad de ejercicios para la perdida de grasa")
 plt.show()
@@ -188,6 +156,42 @@ plt.show()
 #Coeficiente de correlación 3:
 corr3 = df_usuario["mean_rating"].corr(df_usuario["n_goal_general_fitness"])
 print(f"Coeficiente de correlación 3: {corr3}")
+
+
+## Pregunta 3
+df_usuario["mean_rating"].plot(kind="box")
+plt.show()
+
+## mean rating
+mas_bajo = df_usuario["mean_rating"].min()
+print("Promedio más bajo:", mas_bajo)
+mas_alto = df_usuario["mean_rating"].max()
+print("Promedio más alto:", mas_alto)
+df_mean_bajo = df_usuario[df_usuario['mean_rating'] == mas_bajo]
+df_solo_rating = df_mean_bajo[['user_id', 'mean_rating']]
+print(df_solo_rating)
+
+## n records
+mayores_records = df_usuario.sort_values(by="n_records", ascending=False).head()
+df_mayores_records = mayores_records[["user_id", "n_records", "mean_rating"]]
+print(df_mayores_records)
+
+print("si")
+
+
+##Pregunta 4
+edad_entrenamientos_resistencia = df_usuario["age"].corr(df_usuario["n_goal_endurance"])
+valoracion_cantidad_musculos = df_usuario["mean_rating"].corr(df_usuario["n_body_cardio"])
+valoracion_perida_grasa = df_usuario["mean_rating"].corr(df_usuario["n_goal_general_fitness"])
+
+df_fitness_goal = (df_usuario["n_goal_general_fitness"] == 0.0) | (df_usuario["n_goal_general_fitness"] == 0.0)
+#print(df_fitness_goal)
+
+#print("print")
+#print(edad_entrenamientos_resistencia)
+#print(valoracion_cantidad_musculos)
+#print(valoracion_perida_grasa)
+
 
 #Pregunta 5
 # Correlación de la tercera variable (n_bodyparts) con cada variable original
