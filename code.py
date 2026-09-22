@@ -133,18 +133,31 @@ valoracion_cantidad_musculos = df_usuario["mean_rating"].corr(df_usuario["n_body
 valoracion_perida_grasa = df_usuario["mean_rating"].corr(df_usuario["n_goal_general_fitness"])
 
 df_fitness_goal = (df_usuario["n_goal_general_fitness"] == 0.0) | (df_usuario["n_goal_general_fitness"] == 0.0)
-print(df_fitness_goal)
+#print(df_fitness_goal)
 
-print("print")
-print(edad_entrenamientos_resistencia)
-print(valoracion_cantidad_musculos)
-print(valoracion_perida_grasa)
+#print("print")
+#print(edad_entrenamientos_resistencia)
+#print(valoracion_cantidad_musculos)
+#print(valoracion_perida_grasa)
 
 ## pregunta 3
 df_usuario["mean_rating"].plot(kind="box")
 plt.show()
 
-print(df_usuario)
+## mean rating
+mas_bajo = df_usuario["mean_rating"].min()
+print("Promedio más bajo:", mas_bajo)
+mas_alto = df_usuario["mean_rating"].max()
+print("Promedio más alto:", mas_alto)
+df_mean_bajo = df_usuario[df_usuario['mean_rating'] == mas_bajo]
+df_solo_rating = df_mean_bajo[['user_id', 'mean_rating']]
+print(df_solo_rating)
+
+## n records
+mayores_records = df_usuario.sort_values(by="n_records", ascending=False).head()
+df_mayores_records = mayores_records[["user_id", "n_records", "mean_rating"]]
+print(df_mayores_records)
+
 print("si")
 
 # Punto 2
