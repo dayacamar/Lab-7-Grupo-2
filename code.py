@@ -93,16 +93,33 @@ on="user_id",
 how="left"
 )
 # Proporción de cantidad de registros en general fitness
-df_usuario["share_general_fitness"] = (
+df_usuario["share_goal_general_fitness"] = (
 df_usuario["n_goal_general_fitness"]
 / df_usuario["n_records"]
 )
 
 # Proporción de cantidad de registros en endurance
-df_usuario["share_endurance"] = (
+df_usuario["share_goal_endurance"] = (
 df_usuario["n_goal_endurance"]
 / df_usuario["n_records"]
 )
+
+df_usuario["share_goal_fat_loss"] = (
+df_usuario["n_goal_fat_loss"]
+/ df_usuario["n_records"]
+)
+
+df_usuario["share_goal_mobility"] = (
+df_usuario["n_goal_mobility"]
+/ df_usuario["n_records"]
+)
+
+df_usuario["share_goal_muscle_gain"] = (
+df_usuario["n_goal_muscle_gain"]
+/ df_usuario["n_records"]
+)
+
+
 
 df_usuario["user_id"].nunique()
 
@@ -130,6 +147,31 @@ plt.show()
 print(df_usuario)
 print("si")
 
+# Punto 2
+# Diagrama de dispersión para edad y cantidad de ejercicios de perdida de grasa
 
+relacion_1 = df_usuario[["age", "n_goal_fat_loss"]]
+relacion_1.plot(kind="scatter", x="age", y="n_goal_fat_loss", xlabel="Edad", ylabel="Cantidad de ejercicios para la perdida de grasa", title="Relación edad - cantidad de ejercicios para la perdida de grasa")
+plt.show()
 
+# Coeficiente de correlación 1:
+corr1 = df_usuario["age"].corr(df_usuario["n_goal_fat_loss"])
+print(f"Coeficiente de correlación 1: {corr1}")
 
+# Diagrama de dispersión para valoración promedio y número de ejercicios de cardio
+relacion_2 = df_usuario[["mean_rating", "n_body_cardio"]]
+relacion_2.plot(kind="scatter", x="mean_rating", y="n_body_cardio", xlabel="Valoración promedio (0.0 - 5.0)", ylabel="Cantidad de ejercicios de cardio", title="Relación valoración promedio - cantidad de ejercicios de cardio")
+plt.show()
+
+#Coeficiente de correlación 2:
+corr2 = df_usuario["mean_rating"].corr(df_usuario["n_body_cardio"])
+print(f"Coeficiente de correlación 2: {corr2}")
+
+# Diagrama de dispersión para valoración promedio y cantidad de ejercicios de condición física general
+relacion_3 = df_usuario[["mean_rating", "n_goal_general_fitness"]]
+relacion_3.plot(kind="scatter", x="mean_rating", y="n_goal_general_fitness", xlabel="Valoración promedio (0.0 - 5.0)", ylabel="Cantidad de ejercicios para acondicionamiento físico", title="Relación valoración promedio \n - Cantidad de ejercicios para acondicionamiento físico")
+plt.show()
+
+#Coeficiente de correlación 3:
+corr3 = df_usuario["mean_rating"].corr(df_usuario["n_goal_general_fitness"])
+print(f"Coeficiente de correlación 3: {corr3}")
