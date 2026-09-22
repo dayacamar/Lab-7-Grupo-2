@@ -2,6 +2,8 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import pathlib as Path
+
 
 # Carga de datos
 df = pd.read_csv("smart_workout_raw_dataset.csv")
@@ -107,3 +109,27 @@ df_usuario["user_id"].nunique()
 df_usuario.shape[0]
 
 df_usuario["user_id"].duplicated().sum()
+
+##pregunta 4
+edad_entrenamientos_resistencia = df_usuario["age"].corr(df_usuario["n_goal_endurance"])
+valoracion_cantidad_musculos = df_usuario["mean_rating"].corr(df_usuario["n_body_cardio"])
+valoracion_perida_grasa = df_usuario["mean_rating"].corr(df_usuario["n_goal_general_fitness"])
+
+df_fitness_goal = (df_usuario["n_goal_general_fitness"] == 0.0) | (df_usuario["n_goal_general_fitness"] == 0.0)
+print(df_fitness_goal)
+
+print("print")
+print(edad_entrenamientos_resistencia)
+print(valoracion_cantidad_musculos)
+print(valoracion_perida_grasa)
+
+## pregunta 3
+df_usuario["mean_rating"].plot(kind="box")
+plt.show()
+
+print(df_usuario)
+print("si")
+
+
+
+
