@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import pathlib as Path
-
+import seaborn as sns 
 
 # Carga de datos
 df = pd.read_csv("smart_workout_raw_dataset.csv")
@@ -188,3 +188,12 @@ plt.show()
 #Coeficiente de correlación 3:
 corr3 = df_usuario["mean_rating"].corr(df_usuario["n_goal_general_fitness"])
 print(f"Coeficiente de correlación 3: {corr3}")
+
+#Pregunta 5
+# Correlación de la tercera variable (n_bodyparts) con cada variable original
+corr_bodyparts_rating = df_usuario["n_bodyparts"].corr(df_usuario["mean_rating"])
+corr_bodyparts_goal = df_usuario["n_bodyparts"].corr(df_usuario["n_goal_general_fitness"])
+
+print(f"Correlación de la tercera variable")
+print(f"n_bodyparts vs mean_rating: {corr_bodyparts_rating}")
+print(f"n_bodyparts vs n_goal_general_fitness: {corr_bodyparts_goal}")
